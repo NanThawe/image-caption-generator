@@ -136,5 +136,5 @@ if uploaded_image is not None:
             st.success('Caption generated successfully.')
             st.write("Generated Caption:", cleaned_caption)
             
-            uploaded_image.empty()
+            uploaded_image = None
         
