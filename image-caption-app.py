@@ -119,6 +119,7 @@ uploaded_image = st.file_uploader("", label_visibility="hidden", type=["jpg", "p
 image_list = []
 
 if uploaded_image is not None:
+    image_uploaded = True
     progress_text = "Loading image in progress. Please wait..."
     my_bar = st.progress(0, text=progress_text)
 
@@ -131,7 +132,7 @@ if uploaded_image is not None:
     image = Image.open(uploaded_image)
     st.image(image, caption="Uploaded Image", use_column_width=True)
     
-
+if image_uploaded:
     with st.spinner("Loading VGG16 model...."):
         if tokenizer is not None:
             # Preprocess the image and generate a caption with VGG16
@@ -148,6 +149,7 @@ reset_button = st.button("Reset image")
 if reset_button:
     # Reset the file uploader widget and clear the list of processed images
     uploaded_file = None
+    image_uploaded = False
     image_list = []
     # Delete any previously generated images
     delete_generated_images(image_list)
