@@ -27,6 +27,7 @@ st.set_page_config(
     page_icon = ":camera:",
     initial_sidebar_state = 'auto'
 )
+st.markdown("### Important: Please remove the uploaded image before uploading another image. Failing to do so may result in unexpected behavior or crashes.")
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
