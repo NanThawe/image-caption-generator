@@ -85,7 +85,7 @@ for layer in vgg_model.layers:
 vgg_model = Model(inputs=vgg_model.inputs, outputs=vgg_model.layers[-2].output)
 
 # Load your pre-trained image captioning model and tokenizer
-captioning_model = load_model('image-text-vgg16/vgg16_model.h5')
+captioning_model = load_model('image-text-vgg16/vgg16_model.h5', compile=False)
 
 
 # Function to remove "startseq" and "endseq" tokens from the predicted caption
