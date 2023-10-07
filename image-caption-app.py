@@ -23,7 +23,7 @@ tf.keras.utils.get_custom_objects()['CustomAdamOptimizer'] = CustomAdamOptimizer
 
 #layout of the app
 st.set_page_config(
-    page_title="Image Caption Generator",
+    page_title="Image to Caption Generator",
     page_icon = ":camera:",
     initial_sidebar_state = 'auto'
 )
@@ -106,7 +106,7 @@ def clean_predicted_caption(caption):
     
 #Streamlit UI
 st.title("""
-         Image Caption Prediction
+         Image to Caption Generator  🔄
          """
          )
 uploaded_image = st.file_uploader("", label_visibility="hidden", type=["jpg", "png", "jpeg"])
