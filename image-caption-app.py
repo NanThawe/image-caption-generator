@@ -103,6 +103,11 @@ def clean_predicted_caption(caption):
     cleaned_caption = cleaned_caption.strip() + '.'
     cleaned_caption = cleaned_caption.capitalize()
     return cleaned_caption
+
+def delete_generated_images(images):
+    for img_path in images:
+        if os.path.exists(img_path):
+            os.remove(img_path)
     
 #Streamlit UI
 st.title("""
@@ -111,12 +116,7 @@ st.title("""
          )
 
 uploaded_image = st.file_uploader("", label_visibility="hidden", type=["jpg", "png", "jpeg"])
-processed_images = []
-
-def delete_generated_images(images):
-    for img_path in images:
-        if os.path.exists(img_path):
-            os.remove(img_path)
+image_list = []
 
 if uploaded_image is not None:
     progress_text = "Loading image in progress. Please wait..."
@@ -144,11 +144,11 @@ if uploaded_image is not None:
             st.write("Generated Caption:", cleaned_caption)
             
 
-    reset_button = st.button("Reset image")
-    if reset_button:
-        # Reset the file uploader widget and clear the list of processed images
-        uploaded_file = None
-        processed_images = []
-        # Delete any previously generated images
-        delete_generated_images(processed_images)
+reset_button = st.button("Reset image")
+if reset_button:
+    # Reset the file uploader widget and clear the list of processed images
+    uploaded_file = None
+    image_list = []
+    # Delete any previously generated images
+    delete_generated_images(image_list)
         
