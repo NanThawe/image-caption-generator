@@ -85,7 +85,7 @@ for layer in vgg_model.layers:
 vgg_model = Model(inputs=vgg_model.inputs, outputs=vgg_model.layers[-2].output)
 
 # Load your pre-trained image captioning model and tokenizer
-captioning_model = load_model('image-text-vgg16/vgg16_model.h5', compile=False)
+captioning_model = load_model('image-text-vgg16/vgg16_model.h5')
 
 
 # Function to remove "startseq" and "endseq" tokens from the predicted caption
@@ -106,6 +106,15 @@ st.title("""
 uploaded_image = st.file_uploader("", type=["jpg", "png", "jpeg"])
 
 if uploaded_image is not None:
+    progress_text = "Loading image in progress. Please wait..."
+    my_bar = st.progress(0, text=progress_text)
+
+    for percent_complete in range(100):
+        time.sleep(0.01)
+        my_bar.progress(percent_complete + 1, text=progress_text)
+    time.sleep(1)
+    my_bar.empty()
+
     image = Image.open(uploaded_image)
     st.image(image, caption="Uploaded Image", use_column_width=True)
     
