@@ -135,5 +135,6 @@ if uploaded_image is not None:
             cleaned_caption = clean_predicted_caption(caption)
             st.success('Caption generated successfully.')
             st.write("Generated Caption:", cleaned_caption)
-uploaded_image.empty()
+            
+            uploaded_image.empty()
         
