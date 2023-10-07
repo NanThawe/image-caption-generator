@@ -14,6 +14,12 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 
+# Register your custom optimizer
+class CustomAdamOptimizer(tf.keras.optimizers.Adam):
+    pass
+
+tf.keras.utils.get_custom_objects()['CustomAdamOptimizer'] = CustomAdamOptimizer
+
 #layout of the app
 st.set_page_config(
     page_title="Image Caption Generator",
@@ -85,7 +91,7 @@ for layer in vgg_model.layers:
 vgg_model = Model(inputs=vgg_model.inputs, outputs=vgg_model.layers[-2].output)
 
 # Load your pre-trained image captioning model and tokenizer
-captioning_model = load_model('image-text-vgg16/vgg16_model.h5')
+captioning_model = load_model('image-text-vgg16/vgg16_model.h5', custom_objects={'CustomAdamOptimizer': CustomAdamOptimizer})
 
 
 # Function to remove "startseq" and "endseq" tokens from the predicted caption
