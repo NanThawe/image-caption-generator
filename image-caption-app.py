@@ -27,7 +27,6 @@ st.set_page_config(
     page_icon = ":camera:",
     initial_sidebar_state = 'auto'
 )
-st.warning("Important: Please remove the uploaded image before uploading another image. Failing to do so may result in unexpected behavior or crashes.")
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -111,7 +110,7 @@ st.title("""
          """
          )
 uploaded_image = st.file_uploader("", label_visibility="hidden", type=["jpg", "png", "jpeg"])
-
+st.warning("Important: Please remove the uploaded image before uploading another image. Failing to do so may result in unexpected behavior or crashes.")
 if uploaded_image is not None:
     progress_text = "Loading image in progress. Please wait..."
     my_bar = st.progress(0, text=progress_text)
