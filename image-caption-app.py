@@ -10,6 +10,7 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
 import time
+import os
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -110,6 +111,12 @@ st.title("""
          )
 
 uploaded_image = st.file_uploader("", label_visibility="hidden", type=["jpg", "png", "jpeg"])
+processed_images = []
+
+def delete_generated_images(images):
+    for img_path in images:
+        if os.path.exists(img_path):
+            os.remove(img_path)
 
 if uploaded_image is not None:
     progress_text = "Loading image in progress. Please wait..."
@@ -137,7 +144,11 @@ if uploaded_image is not None:
             st.write("Generated Caption:", cleaned_caption)
             
 
-            reset_button = st.button("Reset File Uploader")
-            if reset_button:
-                uploaded_file = None  # Reset the file uploader widget
+    reset_button = st.button("Reset image")
+    if reset_button:
+        # Reset the file uploader widget and clear the list of processed images
+        uploaded_file = None
+        processed_images = []
+        # Delete any previously generated images
+        delete_generated_images(processed_images)
         
