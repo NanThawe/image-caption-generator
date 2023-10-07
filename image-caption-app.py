@@ -114,7 +114,7 @@ st.title("""
          Image Caption Prediction
          """
          )
-
+image_uploaded = False
 uploaded_image = st.file_uploader("", label_visibility="hidden", type=["jpg", "png", "jpeg"])
 image_list = []
 
