@@ -109,7 +109,7 @@ st.title("""
          """
          )
 
-uploaded_image = st.file_uploader("", type=["jpg", "png", "jpeg"])
+uploaded_image = st.file_uploader("", label_visibility="never", type=["jpg", "png", "jpeg"])
 
 if uploaded_image is not None:
     progress_text = "Loading image in progress. Please wait..."
