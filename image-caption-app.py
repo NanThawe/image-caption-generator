@@ -107,7 +107,7 @@ uploaded_image = st.file_uploader("", type=["jpg", "png", "jpeg"])
 
 if uploaded_image is not None:
     progress_text = "Loading image in progress. Please wait..."
-    my_bar = st.progress(0, text=progress_text)
+    my_bar = st.progress(0)
 
     for percent_complete in range(100):
         time.sleep(0.01)
