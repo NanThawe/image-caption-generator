@@ -136,5 +136,8 @@ if uploaded_image is not None:
             st.success('Caption generated successfully.')
             st.write("Generated Caption:", cleaned_caption)
             
-            uploaded_image = None
+
+            reset_button = st.button("Reset File Uploader")
+            if reset_button:
+                uploaded_file = None  # Reset the file uploader widget
         
